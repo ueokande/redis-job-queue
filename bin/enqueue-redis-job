@@ -1,0 +1,22 @@
+#!/bin/sh
+
+
+if [ "$#" -lt 1 ]; then
+  echo "Command is not specified"
+  exit 1
+fi
+
+key="$1"
+shift
+
+command_line="$1"
+shift
+for param in "$@"; do
+  param="$(printf %q "${param}")"
+  command_line="$command_line $param"
+done
+
+echo "Enqueued a job: ${command_line}"
+
+redis-cli LPUSH "$key" "$command_line"
+

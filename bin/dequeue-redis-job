@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ "$#" -lt 1 ]; then
+  echo "Key is not specified" >&2
+  exit 1
+fi
+
+key="$1"
+value="$(redis-cli RPOP $key)"
+
+if [ "$value" = "(nil)" ]; then
+  exit 0
+fi
+
+echo "Dequeued a job: ${value}"
+eval "$value"
+
