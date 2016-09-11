@@ -1,0 +1,12 @@
+[Unit]
+Description=Timer for Redis job queue on %I
+After=redis.service
+
+[Timer]
+OnCalendar=daily
+OnUnitActiveSec=1min
+Persistent=yes
+
+[Install]
+WantedBy=timers.target
+

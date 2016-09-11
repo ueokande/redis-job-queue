@@ -1,0 +1,10 @@
+[Unit]
+Description=Worker for Redis job queue on %I
+After=redis.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/shinya-u/var/work/redis-job-queue/bin/dequeue-redis-job %I
+
+[Install]
+WantedBy=multi-user.target
