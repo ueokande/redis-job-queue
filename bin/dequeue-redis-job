@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -eu
 
 if [ "$#" -lt 1 ]; then
   echo "Key is not specified" >&2
